@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+    <header class="navbar">
+        <div class="nav-contenedor">
+            <div class="logo">COMPAÑIA TELEFÓNICA<span></span></div>
+            <nav>
+                <ul>
+                    <li class="activo">Servicios</li>
+                    <li>Tienda</li>
+                    <li>Ayuda</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="contenedor-principal">
+
+        <div class="acceso-sesion" id="acceso-sesion">
+            <h2>Portal</h2>
+            <p>Ingresa tus credenciales para gestionar tus servicios</p>
+            
+            <form id="accesoFormulario">
+                <div class="grupo-entrada">
+                    <label for="usuario">Usuario o Correo</label>
+                    <input type="text" id="usuario" placeholder="Ej. admin" required>
+                </div>
+                
+                <div class="grupo-entrada">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" id="contraseña" placeholder="••••••••" required>
+                </div>
+                
+                <div id="mensaje" class="mensaje-alerta"></div>
+                <button type="button" id="btnValidar" onclick="validarAcceso()">Validar</button>
+            </form>
+        </div>
+        
+        <div class="acceso-bienvenida" id="seccionBienvenida" style="display: none;">
+            <h1>¡Autenticación Exitosa!</h1>
+            <p>Bienvenido al sistema de Compañia telefónicas. Has ingresado correctamente a tu panel de gestión.</p>
+            <button class="boton-Salir" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+
+    </main>
+    
+    <script>
+        function validarAcceso() {
+            const usuarioIngresado = document.getElementById('usuario').value.trim();
+            const contraseñaIngresada = document.getElementById('contraseña').value;
+            const cajaMensaje = document.getElementById('mensaje');
+            
+            const login = document.getElementById('acceso-sesion');
+            const bienvenida = document.getElementById('seccionBienvenida');
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    usuario: usuarioIngresado,
+                    contrasena: contraseñaIngresada
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en la respuesta del servidor");
+                }
+                return response.json(); // Convierte la respuesta a un objeto JavaScript
+                })
+                
+            .then(data => {
+                if (data.valido) {
+                    cajaMensaje.style.color = "#28a745";
+                    cajaMensaje.textContent = data.mensaje;
+                    
+                    setTimeout(() => {
+                        login.style.display = "none";
+                        bienvenida.style.display = "block";
+                    }, 1000);
+                } else {
+                    cajaMensaje.style.color = "#da291c";
+                    cajaMensaje.textContent = data.mensaje;
+                }
+            })
+            .catch(error => {
+                console.error("Error en la conexión:", error);
+                cajaMensaje.style.color = "#da291c";
+                cajaMensaje.textContent = "No se pudo conectar con el servidor backend.";
+            });
+        }
+        function cerrarSesion() {
+            document.getElementById('accesoFormulario').reset();
+            document.getElementById('mensaje').textContent = "";
+            document.getElementById('acceso-sesion').style.display = "block";
+            document.getElementById('seccionBienvenida').style.display = "none";
+        }
+    </script>
+</body>
+</html>

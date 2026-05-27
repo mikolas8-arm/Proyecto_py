@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #da291c;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #333;
+}
+
+.navbar nav ul {
+    display: flex;
+    list-style: none;
+    height: 100%;
+}
+
+.navbar nav ul li {
+    padding: 19px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar nav ul li:hover {
+    color: #da291c;
+}
+
+.navbar nav ul li.activo {
+    background-color: #da291c;
+    color: #ffffff;
+}
+
+.contenedor-principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.acceso-sesion, .acceso-bienvenida {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.acceso-sesion h2 {
+    color: #111;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.acceso-sesion p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.grupo-entrada {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.grupo-entrada label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.grupo-entrada input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.grupo-entrada input:focus {
+    outline: none;
+    border-color: #da291c;
+}
+
+.mensaje-alerta {
+    min-height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#btnValidar, .boton-Salir {
+    width: 100%;
+    background-color: #da291c;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+#btnValidar:hover {
+    background-color: #b51f15;
+}
+
+.acceso-bienvenida h1 {
+    color: #da291c;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.acceso-bienvenida p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.boton-Salir {
+    background-color: #555;
+}
+
+.boton-Salir:hover {
+    background-color: #333;
+}
